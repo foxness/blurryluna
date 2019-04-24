@@ -72,8 +72,10 @@
             // 
             // MainWindow
             // 
+            this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.dontsaveButton;
             this.ClientSize = new System.Drawing.Size(296, 86);
             this.Controls.Add(this.dontsaveButton);
             this.Controls.Add(this.creationLabel);
