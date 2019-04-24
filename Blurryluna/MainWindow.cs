@@ -13,7 +13,10 @@ namespace Blurryluna
 {
     public partial class MainWindow : Form
     {
+        private static readonly String datetimeFormat = "yyyy-MM-dd HH-mm-ss";
+
         private Bitmap screenshot;
+        private DateTime screenshotTime;
 
         public MainWindow()
         {
@@ -30,23 +33,27 @@ namespace Blurryluna
             return bitmap;
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void SaveScreenshot()
         {
             var name = nameTextbox.Text;
+            var time = screenshotTime.ToString(datetimeFormat);
+            var extension = ".png";
 
-            if (name == String.Empty)
-            {
-                name = "testy";
-            }
+            var filename = $"{name} {time}{extension}".Trim();
 
-            name += ".png";
+            screenshot.Save(filename, ImageFormat.Png);
+        }
 
-            screenshot.Save(name, ImageFormat.Png);
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            SaveScreenshot();
+            Application.Exit();
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
             screenshot = TakeScreenshot();
+            screenshotTime = DateTime.Now;
         }
     }
 }
