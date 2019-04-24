@@ -13,7 +13,7 @@ namespace Blurryluna
 {
     public partial class MainWindow : Form
     {
-        private static readonly String datetimeFormat = "yyyy-MM-dd HH-mm-ss";
+        private static readonly string datetimeFormat = "yyyy-MM-dd HH-mm-ss";
 
         private Bitmap screenshot;
         private DateTime screenshotTime;
