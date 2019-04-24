@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Blurryluna
@@ -44,16 +38,36 @@ namespace Blurryluna
             screenshot.Save(filename, ImageFormat.Png);
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void SaveAndExit()
         {
             SaveScreenshot();
+            Exit();
+        }
+
+        private void LoadScreenshot()
+        {
+            screenshot = TakeScreenshot();
+            screenshotTime = DateTime.Now;
+        }
+
+        private void Exit()
+        {
             Application.Exit();
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            SaveAndExit();
+        }
+
+        private void dontsaveButton_Click(object sender, EventArgs e)
+        {
+            Exit();
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            screenshot = TakeScreenshot();
-            screenshotTime = DateTime.Now;
+            LoadScreenshot();
         }
     }
 }
