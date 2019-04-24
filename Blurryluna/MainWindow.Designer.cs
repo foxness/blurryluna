@@ -82,6 +82,7 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.nameTextbox);
             this.Name = "MainWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Blurryluna";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.ResumeLayout(false);
