@@ -81,6 +81,8 @@
             this.Controls.Add(this.creationLabel);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.nameTextbox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Blurryluna";
