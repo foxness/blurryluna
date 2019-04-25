@@ -1,18 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Blurryluna
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+        private static readonly string mutexName = Application.ProductName + Application.ProductVersion;
+
         [STAThread]
         static void Main()
+        {
+            using (var mutex = new Mutex(false, mutexName))
+            {
+                bool firstInstance = mutex.WaitOne(TimeSpan.Zero);
+                if (firstInstance)
+                {
+                    RunApp();
+                    mutex.ReleaseMutex();
+                }
+            }
+        }
+
+        static void RunApp()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
