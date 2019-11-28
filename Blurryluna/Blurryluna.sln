@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2048
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blurryluna", "Blurryluna.csproj", "{8CEE2634-996A-40C0-A67A-E5703DC7B7A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FocusLauncher", "..\FocusLauncher\FocusLauncher.csproj", "{7E709A1C-48D9-4917-B413-827F6D1EB6E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{8CEE2634-996A-40C0-A67A-E5703DC7B7A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CEE2634-996A-40C0-A67A-E5703DC7B7A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CEE2634-996A-40C0-A67A-E5703DC7B7A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E709A1C-48D9-4917-B413-827F6D1EB6E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E709A1C-48D9-4917-B413-827F6D1EB6E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E709A1C-48D9-4917-B413-827F6D1EB6E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E709A1C-48D9-4917-B413-827F6D1EB6E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
