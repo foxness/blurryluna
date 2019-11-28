@@ -11,9 +11,11 @@ namespace Blurryluna
         private static readonly string datetimeFormat = "yyyy-MM-dd HH-mm-ss";
         private static readonly string configName = "blurryluna.cfg";
         private static readonly string configSavePath = "savePath=";
+        private static readonly string badChars = "\\/:*?\"<>|";
 
         private Bitmap screenshot;
         private DateTime screenshotTime;
+        private string screenshotName;
         private string screenshotSavePath;
 
         public MainWindow()
@@ -31,22 +33,63 @@ namespace Blurryluna
             return bitmap;
         }
 
-        private void SaveScreenshot()
+        private bool TryGetScreenshotName()
         {
-            var name = nameTextbox.Text;
+            var name = nameTextbox.Text.Trim();
+
+            string message = null;
+            if (name.Length == 0)
+            {
+                message = "The name is empty";
+            }
+            else if (name.IndexOfAny(badChars.ToCharArray()) != -1)
+            {
+                message = "The name contains bad characters";
+            }
+
+            if (message != null)
+            {
+                MessageBox.Show(message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                screenshotName = null;
+                return false;
+            }
+            else
+            {
+                screenshotName = name;
+                return true;
+            }
+        }
+
+        private bool TrySaveScreenshot()
+        {
+            var gotName = TryGetScreenshotName();
+            if (!gotName)
+            {
+                return false;
+            }
+
+            var name = screenshotName;
             var time = screenshotTime.ToString(datetimeFormat);
             var extension = ".png";
 
-            var filename = $"{name} {time}{extension}".Trim();
+            time = time.Trim();
+            extension = extension.Trim();
+
+            var filename = $"{name} {time}{extension}";
             var path = Path.Combine(screenshotSavePath, filename);
 
             screenshot.Save(path, ImageFormat.Png);
+
+            return true;
         }
 
-        private void SaveAndExit()
+        private void TrySaveAndExit()
         {
-            SaveScreenshot();
-            Exit();
+            var saved = TrySaveScreenshot();
+            if (saved)
+            {
+                Exit();
+            }
         }
 
         private void LoadScreenshot()
@@ -106,7 +149,7 @@ namespace Blurryluna
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            SaveAndExit();
+            TrySaveAndExit();
         }
 
         private void dontsaveButton_Click(object sender, EventArgs e)
